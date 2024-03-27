@@ -5,7 +5,6 @@ import pandas as pd
 import numpy as np
 
 img_size = 224
-# dirname = 'CAT_00'
 # base_path = '/mnt/sda1/cats/%s' % dirname
 base_path = './source/cats'
 
