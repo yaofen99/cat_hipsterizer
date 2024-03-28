@@ -2,7 +2,8 @@ import keras, datetime
 from keras.layers import Input, Dense
 from keras.models import Model
 from keras.callbacks import TensorBoard, ModelCheckpoint, ReduceLROnPlateau
-from keras.applications import mobilenetv2
+# from keras.applications import mobileNetV2
+from tensorflow.keras.applications import MobileNetV2
 import numpy as np
 
 img_size = 224
@@ -15,13 +16,13 @@ elif mode == 'lmks':
 
 start_time = datetime.datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
 
-data_00 = np.load('../dataset/CAT_00.npy')
-data_01 = np.load('../dataset/CAT_01.npy')
-data_02 = np.load('../dataset/CAT_02.npy')
-data_03 = np.load('../dataset/CAT_03.npy')
-data_04 = np.load('../dataset/CAT_04.npy')
-data_05 = np.load('../dataset/CAT_05.npy')
-data_06 = np.load('../dataset/CAT_06.npy')
+data_00 = np.load('./dataset/CAT_00.npy')
+data_01 = np.load('./dataset/CAT_01.npy')
+data_02 = np.load('./dataset/CAT_02.npy')
+data_03 = np.load('./dataset/CAT_03.npy')
+data_04 = np.load('./dataset/CAT_04.npy')
+data_05 = np.load('./dataset/CAT_05.npy')
+data_06 = np.load('./dataset/CAT_06.npy')
 
 x_train = np.concatenate((data_00.item().get('imgs'), data_01.item().get('imgs'), data_02.item().get('imgs'), data_03.item().get('imgs'), data_04.item().get('imgs'), data_05.item().get('imgs')), axis=0)
 y_train = np.concatenate((data_00.item().get(mode), data_01.item().get(mode), data_02.item().get(mode), data_03.item().get(mode), data_04.item().get(mode), data_05.item().get(mode)), axis=0)
@@ -39,9 +40,9 @@ y_test = np.reshape(y_test, (-1, output_size))
 
 inputs = Input(shape=(img_size, img_size, 3))
 
-mobilenetv2_model = mobilenetv2.MobileNetV2(input_shape=(img_size, img_size, 3), alpha=1.0, depth_multiplier=1, include_top=False, weights='imagenet', input_tensor=inputs, pooling='max')
+MobileNetV2_model = MobileNetV2.MobileNetV2(input_shape=(img_size, img_size, 3), alpha=1.0, depth_multiplier=1, include_top=False, weights='imagenet', input_tensor=inputs, pooling='max')
 
-net = Dense(128, activation='relu')(mobilenetv2_model.layers[-1].output)
+net = Dense(128, activation='relu')(MobileNetV2_model.layers[-1].output)
 net = Dense(64, activation='relu')(net)
 net = Dense(output_size, activation='linear')(net)
 
