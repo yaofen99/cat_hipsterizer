@@ -1,0 +1,4 @@
+/Users/qiong/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Users/qiong/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -DCMAKE_C_COMPILER=gcc-13 -G Ninja -S /Users/qiong/Desktop/EE451/2024/proj/python_test/cat_hipsterizer -B /Users/qiong/Desktop/EE451/2024/proj/python_test/cat_hipsterizer/cmake-build-debug
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/qiong/Desktop/EE451/2024/proj/python_test/cat_hipsterizer/cmake-build-debug
